@@ -1,0 +1,67 @@
+/* 
+ * clearfix         used project wide to clear floats and create a new formatting context
+ * usage            @include clearfix-me(<empty|overflow|facebook|micro|stubborn>)
+ * $clearfix-method sets default method
+ */
+
+// set default clearfix method to overflow
+$clearfix-method: micro !default; // can be one of: overflow,facebook,micro,stubborn
+
+// Original source used @extends for smaller output.
+// However, @extend doesn't play well with media queries,
+// so we need to use straight mixins instead.
+
+@mixin clearfix-me($method: $clearfix-method) {
+
+    @if $method == overflow {
+
+        overflow: hidden;
+        *overflow: visible;
+        zoom: 1;
+
+    } @else if $method == facebook {
+
+        display: table-cell;
+        vertical-align: top;
+        width: 10000px;
+
+    } @else if $method == stubborn {
+
+        display: table-cell;
+
+        &:after {
+            clear: both;
+            content: "x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x";
+            display: block;
+            font-size: xx-large;
+            height: 0 !important;
+            line-height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+    } @else { // By default, use the micro method
+        zoom: 1;
+
+        &:before, &:after {
+            content: " ";
+            display: table;
+        }
+
+        &:after {
+            clear: both;
+        }
+    }
+}
+
+@mixin clearfix( $method: $clearfix-method ) {
+    @include clearfix-me( $method );
+}
+
+/*
+ * Allow a placeholder selector option for when we can use it
+ */
+
+%clearfix-me {
+    @include clearfix-me(micro);
+}

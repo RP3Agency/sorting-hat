@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Utility placeholder selectors (mostly from Boilerplate, but modified)
+   ========================================================================== */
+
+/**
+ * Image replacement
+ */
+%ir {
+    display: block;
+    overflow: hidden;
+    text-indent: 200%;
+    white-space: nowrap;
+}
+
+
+/**
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+%hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+
+/**
+ * Hide for the purposes of calculating height in jQuery
+ */
+.jquery-hidden {
+    display: block !important;
+    visibility: hidden !important;
+}
+
+
+/**
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+%visuallyhidden,
+.assistive {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
+/**
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+%visuallyhidden.focusable:active,
+%visuallyhidden.focusable:focus,
+.assistive.focusable:active,
+.assistive.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+
+/**
+ * Hide visually and from screenreaders, but maintain layout
+ */
+%invisible {
+    visibility: hidden;
+}
+
+
+/**
+ * Explicitly setting .clearfix as a class on an element
+ */
+.clearfix {
+    @include clearfix-me;
+}
+
+
+/**
+ * Apply a background-color to elements for testing purposes
+ */
+%testing, .testing {
+    background-color: $test-color;
+}
+
+/**
+ * Draw a 2px border around an element
+ */
+%block-border {
+    border: 2px solid #B7B7AA;
+}
+
+
+/**
+ * Add right angle quotation mark after an element via pseudo-elements
+ */
+%caret-after {
+    &:after {
+        content: "\00A0»";
+        white-space: nowrap;
+    }
+}

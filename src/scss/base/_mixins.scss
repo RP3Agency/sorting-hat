@@ -1,0 +1,71 @@
+@mixin modernizr($test) {
+    html.#{$test} & {
+        @content;
+    }
+}
+
+@mixin hover-state {
+    &:hover, &:active, &:focus {
+        @content;
+    }  
+}
+
+@mixin vertical-centering($font-size, $height, $blockit: true) {
+
+    @if $blockit == true {
+        display: block;
+    }
+    line-height: ($height / $font-size);
+    @include rem(font-size, $font-size);
+    @include rem(height, $height);
+}
+
+
+/**
+ * Retina shouldn't apply to IE<9, but for some reason it does.
+ * This mixin will handle all the retina/non-retina adjustments
+ * for you.
+ * $image: full path to the image, minus the "@2x" AND extension (assume 'png')
+ * $size: for the "background-size" property; width should equal the non-retina version
+ * of the sprite; height should be set to "auto"
+ * $ext: the extension for the image, assuming "png"
+ */
+@mixin retina-ie($image, $size, $ext: png) {
+    background-image: url("#{$image}.#{$ext}");
+
+    @include retina {
+        background-image: url("#{$image}@2x.#{$ext}");
+        background-size: $size;
+    }
+
+    @include modernizr(lt-ie9) {
+        background-image: url("#{$image}.#{$ext}");
+    }
+}
+
+
+/**
+ * Better RGBa Fallbacks with Sass
+ * http://alwaystwisted.com/post.php?s=2013-05-06-smarter-rgba-fallbacks-with-sass
+ */
+@function trans-fallback($color, $transparency) {
+    @return lighten($color, (1 - $transparency) * 5%);
+}
+
+@mixin rgba($property, $color, $transparency) {
+    #{$property}: transparentize($color, $transparency);
+
+    @include modernizr(no-rgba) {
+        #{$property}: trans-fallback($color, $transparency);
+    }
+}
+
+
+/**
+ * I keep starting to type @include font-size() so often
+ * when I actually mean to type @include rem(font-size, …) that
+ * I might as well make it a real thing.
+ */
+@mixin font-size($font-size) {
+    @include rem(font-size, $font-size);
+}
