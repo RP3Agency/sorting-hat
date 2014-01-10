@@ -10,7 +10,53 @@
 <body>
 	
 	<div class="page">
-		<h1>RP3 Sorting Hat</h1>
+		
+		<section id="setupPanel">
+			
+			<h1>RP3 Sorting Hat</h1>
+			
+			<form action="#" method="POST">
+				
+				<div class="field full-width">
+					
+					<h2>Add Players <button name="uploadCSV">or upload csv</button></h2>
+				
+					<ul id="players">
+					</ul>
+				
+					<input placeholder="name" type="text" name="name"><button name="addPlayer" class="list-builder-btn">Add</button>
+					
+				</div>
+				
+				<div class="field">
+					
+					<h2>Number of Teams</h2>
+					
+					<input type="text" name="numberOfTeams">
+					
+				</div>
+				
+				<div class="field">
+					
+					<h2>Team Names</h2>
+					
+					<select name="teamNames">
+						<option value="colors">Colors</option>
+						<option value="animals">Animals</option>
+						<option value="countries">Countries</option>
+						<option value="other">Other</option>
+					</select>
+					
+				</div>
+				
+				<button name="sortTeamsLive">Sort Teams Live</button>
+				
+				<button name="downloadTeamRosters">Download Team Rosters</button>
+				
+			</form>
+			
+		</section>
+		
 	</div>
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
